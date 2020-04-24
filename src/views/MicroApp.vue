@@ -8,7 +8,11 @@ import { loadMicroApp } from 'qiankun'
 const microAppConfigs = [
   {
     name: 'sub7200',
-    entry: '//localhost:7200'
+    entry: '//0.0.0.0:7200'
+  },
+  {
+    name: 'sub7300',
+    entry: '//0.0.0.0:7300'
   }
 ]
 export default {
@@ -22,7 +26,7 @@ export default {
     // const url = this.$route.path
     // const app = microAppConfigs.find(e => ('/microApp' + e.url) === url)
     // if (!app) this.$router.push('/')
-    const app = microAppConfigs[0]
+    const app = microAppConfigs[1]
     this.microApp = loadMicroApp({
       name: app.name,
       entry: app.entry,

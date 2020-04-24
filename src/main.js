@@ -89,21 +89,10 @@ render({
 })
 
 // 注册子应用
-registerMicroApps([{
-  name: 'vue subapp-user/',
-  entry: '//localhost:7100/ ',
-  render,
-  activeRule: genActiveRule('/subapp-user/')
-},
-{
-  name: 'vue sub-app2',
-  entry: '//localhost:7101',
-  render,
-  activeRule: genActiveRule('/sub-app2')
-},
+registerMicroApps([
 {
   name: 'vue sub-app3',
-  entry: '//localhost:7200',
+  entry: '//localhost:7300',
   render,
   activeRule: genActiveRule('/sub-app3')
 }
