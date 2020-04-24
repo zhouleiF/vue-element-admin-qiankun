@@ -7,7 +7,13 @@
         <navbar />
         <tags-view v-if="needTagsView" />
       </div>
-      <app-main />
+      <app-main
+        v-if="!isChildApp"
+      />
+      <single-main
+        v-else
+        :content="content"
+      />
       <right-panel v-if="showSettings">
         <settings />
       </right-panel>
@@ -17,21 +23,30 @@
 
 <script>
 import RightPanel from '@/components/RightPanel'
-import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
-import ResizeMixin from './mixin/ResizeHandler'
+import { AppMain, SingleMain, Navbar, Settings, Sidebar, TagsView } from './components'
+// import ResizeMixin from './mixin/ResizeHandler'
 import { mapState } from 'vuex'
 
 export default {
   name: 'Layout',
   components: {
     AppMain,
+    SingleMain,
     Navbar,
     RightPanel,
     Settings,
     Sidebar,
     TagsView
   },
-  mixins: [ResizeMixin],
+  props: {
+    content: {
+      type: String,
+      default: ''
+    },
+    loading: Boolean,
+    isChildApp: Boolean
+  },
+  // mixins: [ResizeMixin],
   computed: {
     ...mapState({
       sidebar: state => state.app.sidebar,
