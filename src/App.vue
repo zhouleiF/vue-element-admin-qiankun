@@ -1,16 +1,16 @@
 <template>
   <div id="root">
-    <router-view v-if="!isChildApp" />
-    <layout v-else :loading="loading" :is-child-app="isChildApp" :content="content" />
+    <router-view />
+    <!-- <layout v-else :loading="loading" :is-child-app="isChildApp" :content="content" /> -->
   </div>
 </template>
 
 <script>
-import Layout from '@/layout'
+// import Layout from '@/layout'
 export default {
   name: 'App',
   components: {
-    Layout
+    // Layout
   },
   props: {
     content: {
@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     isChildApp() {
-      if (this.$route.path.match('sub-app')) {
+      if (this.$route.path.match('micro')) {
         return true
       } else {
         return false

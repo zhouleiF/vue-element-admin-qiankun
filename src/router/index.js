@@ -84,6 +84,10 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/micro',
+    component: Layout
+  },
+  {
     path: '/documentation',
     component: Layout,
     children: [

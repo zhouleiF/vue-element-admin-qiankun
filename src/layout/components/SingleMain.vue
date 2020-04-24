@@ -1,9 +1,10 @@
 <template>
   <section class="single-main">
     <transition name="fade-transform" mode="out-in">
-      <div
+      <!-- <div
         v-html="content"
-      />
+      /> -->
+      <div id="micro" />
     </transition>
   </section>
 </template>
@@ -16,6 +17,9 @@ export default {
       type: String,
       default: ''
     }
+  },
+  mounted() {
+    import('@/micro.js')
   }
 }
 </script>

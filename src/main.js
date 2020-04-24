@@ -19,11 +19,6 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
-import {
-  registerMicroApps,
-  runAfterFirstMounted,
-  start
-} from 'qiankun'
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -48,112 +43,12 @@ Object.keys(filters).forEach(key => {
 
 Vue.config.productionTip = false
 
-function genActiveRule(routerPrefix) {
-  return location => location.pathname.startsWith(routerPrefix)
-}
-
-let app = null
-
-function render({
-  appContent,
-  loading
-}) {
-  if (!app) {
-    app = new Vue({
-      el: '#root',
-      router,
-      store,
-      data() {
-        return {
-          content: appContent,
-          loading
-        }
-      },
-      render(h) {
-        return h(App, {
-          props: {
-            content: this.content,
-            loading: this.loading
-          }
-        })
-      }
-    })
-  } else {
-    app.content = appContent
-    app.loading = loading
-  }
-}
-
-render({
-  loading: true
+new Vue({
+  el: '#root',
+  router,
+  store,
+  render: h => h(App)
 })
-
-// 注册子应用
-registerMicroApps([{
-  name: 'vue subapp-user/',
-  entry: '//localhost:7100/ ',
-  render,
-  activeRule: genActiveRule('/subapp-user/')
-},
-{
-  name: 'vue sub-app2',
-  entry: '//localhost:7101',
-  render,
-  activeRule: genActiveRule('/sub-app2')
-},
-{
-  name: 'vue sub-app3',
-  entry: '//localhost:7200',
-  render,
-  activeRule: genActiveRule('/sub-app3')
-}
-], {
-  beforeLoad: [
-    app => {
-      console.log('before load', app)
-    }
-  ],
-  beforeMount: [
-    app => {
-      console.log('before mount', app)
-    }
-  ],
-  afterMount: [
-    app => {
-      console.log('after mount', app)
-    }
-  ],
-  afterUnmount: [
-    app => {
-      console.log('after unload', app)
-      app.render({
-        appContent: '',
-        loading: false
-      })
-    }
-  ]
-})
-
-/**
- * @description 设置哪个子应用程序在主加载后默认处于活动状态
- * @param defaultAppLink: string 跳转链接
- */
-// setDefaultMountApp('/home');
-
-/**
- * @description 第一个应用构建完成后执行
- * @param 要执行的函数
- */
-runAfterFirstMounted(() => console.info('first app mounted'))
-
-/**
- * @description 启动主应用
- * @param prefetch 是否在第一次安装子应用程序后预取子应用程序的资产,默认为 true
- * @param jsSandbox 是否启用沙盒，当沙盒启用时，我们可以保证子应用程序是相互隔离的,默认为 true
- * @param singular 是否在一个运行时只显示一个子应用程序，这意味着子应用程序将等待挂载，直到卸载之前,默认为 true
- * @param fetch 设置一个fetch function,默认为 window.fetch
- */
-start()
 
 // 全局store
 window.store = new Vue({
