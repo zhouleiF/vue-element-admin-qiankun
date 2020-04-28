@@ -9,6 +9,7 @@ import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
+import MicroApp from '@/views/MicroApp'
 
 Vue.use(Router)
 
@@ -80,6 +81,25 @@ export const constantRoutes = [
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
         meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      },
+      {
+        path: 'micro',
+        component: MicroApp,
+        meta: { title: 'MicroApp', icon: 'user', noCache: true },
+        children: [
+          {
+            path: 'home',
+            name: 'MicroApp Home',
+            component: MicroApp,
+            meta: { title: 'MicroApp Home', icon: 'user', noCache: true }
+          },
+          {
+            path: 'about',
+            name: 'MicroApp About',
+            component: MicroApp,
+            meta: { title: 'MicroApp About', icon: 'user', noCache: true }
+          }
+        ]
       }
     ]
   },
@@ -119,18 +139,6 @@ export const constantRoutes = [
         component: () => import('@/views/profile/index'),
         name: 'Profile',
         meta: { title: 'Profile', icon: 'user', noCache: true }
-      }
-    ]
-  },
-  {
-    path: '/micro',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/MicroApp'),
-        name: 'MicroApp',
-        meta: { title: 'MicroApp', icon: 'user', noCache: true }
       }
     ]
   }

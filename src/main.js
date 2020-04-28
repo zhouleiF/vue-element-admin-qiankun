@@ -20,8 +20,8 @@ import './utils/error-log' // error log
 import * as filters from './filters' // global filters
 
 import {
-  registerMicroApps,
-  runAfterFirstMounted,
+  // registerMicroApps,
+  // runAfterFirstMounted,
   start
 } from 'qiankun'
 /**
@@ -48,9 +48,9 @@ Object.keys(filters).forEach(key => {
 
 Vue.config.productionTip = false
 
-function genActiveRule(routerPrefix) {
-  return location => location.pathname.startsWith(routerPrefix)
-}
+// function genActiveRule(routerPrefix) {
+//   return location => location.pathname.startsWith(routerPrefix)
+// }
 
 let app = null
 
@@ -89,39 +89,39 @@ render({
 })
 
 // 注册子应用
-registerMicroApps([
-{
-  name: 'vue sub-app3',
-  entry: '//localhost:7300',
-  render,
-  activeRule: genActiveRule('/sub-app3')
-}
-], {
-  beforeLoad: [
-    app => {
-      console.log('before load', app)
-    }
-  ],
-  beforeMount: [
-    app => {
-      console.log('before mount', app)
-    }
-  ],
-  afterMount: [
-    app => {
-      console.log('after mount', app)
-    }
-  ],
-  afterUnmount: [
-    app => {
-      console.log('after unload', app)
-      app.render({
-        appContent: '',
-        loading: false
-      })
-    }
-  ]
-})
+// registerMicroApps([
+// {
+//   name: 'vue sub-app3',
+//   entry: '//localhost:7300',
+//   render,
+//   activeRule: genActiveRule('/sub-app3')
+// }
+// ], {
+//   beforeLoad: [
+//     app => {
+//       console.log('before load', app)
+//     }
+//   ],
+//   beforeMount: [
+//     app => {
+//       console.log('before mount', app)
+//     }
+//   ],
+//   afterMount: [
+//     app => {
+//       console.log('after mount', app)
+//     }
+//   ],
+//   afterUnmount: [
+//     app => {
+//       console.log('after unload', app)
+//       app.render({
+//         appContent: '',
+//         loading: false
+//       })
+//     }
+//   ]
+// })
 
 /**
  * @description 设置哪个子应用程序在主加载后默认处于活动状态
@@ -133,7 +133,7 @@ registerMicroApps([
  * @description 第一个应用构建完成后执行
  * @param 要执行的函数
  */
-runAfterFirstMounted(() => console.info('first app mounted'))
+// runAfterFirstMounted(() => console.info('first app mounted'))
 
 /**
  * @description 启动主应用
