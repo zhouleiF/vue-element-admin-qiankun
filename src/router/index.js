@@ -81,26 +81,26 @@ export const constantRoutes = [
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
         meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
-      },
-      {
-        path: 'micro',
-        component: MicroApp,
-        meta: { title: 'MicroApp', icon: 'user', noCache: true },
-        children: [
-          {
-            path: 'home',
-            name: 'MicroApp Home',
-            component: MicroApp,
-            meta: { title: 'MicroApp Home', icon: 'user', noCache: true }
-          },
-          {
-            path: 'about',
-            name: 'MicroApp About',
-            component: MicroApp,
-            meta: { title: 'MicroApp About', icon: 'user', noCache: true }
-          }
-        ]
       }
+      // {
+      //   path: 'boss',
+      //   component: () => import('@/views/Boss'),
+      //   meta: { title: 'Boss', icon: 'user', noCache: true },
+      //   children: [
+      //     {
+      //       path: 'brokerReview',
+      //       name: 'boss brokerReview',
+      //       component: () => import('@/views/Boss'),
+      //       meta: { title: '经纪人审核', icon: 'user', noCache: true }
+      //     },
+      //     {
+      //       path: 'news',
+      //       name: 'boss news',
+      //       component: () => import('@/views/Boss'),
+      //       meta: { title: '资讯管理', icon: 'user', noCache: true }
+      //     }
+      //   ]
+      // }
     ]
   },
   {
@@ -139,6 +139,44 @@ export const constantRoutes = [
         component: () => import('@/views/profile/index'),
         name: 'Profile',
         meta: { title: 'Profile', icon: 'user', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/micro',
+    component: Layout,
+    meta: { title: 'MicroApp', icon: 'user', noCache: true },
+    children: [
+      {
+        path: 'home',
+        name: 'MicroApp Home',
+        component: MicroApp,
+        meta: { title: 'MicroApp Home', icon: 'user', noCache: true }
+      },
+      {
+        path: 'about',
+        name: 'MicroApp About',
+        component: MicroApp,
+        meta: { title: 'MicroApp About', icon: 'user', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/micro-layout',
+    component: Layout,
+    meta: { title: 'MicroAppWidthLayout', icon: 'user', noCache: true },
+    children: [
+      {
+        path: 'dashboard',
+        name: 'MicroApp dashboard',
+        component: () => import('@/views/MicroAppWithLayout'),
+        meta: { title: 'MicroApp dashboard', icon: 'user', noCache: true }
+      },
+      {
+        path: 'form',
+        name: 'MicroApp form',
+        component: () => import('@/views/MicroAppWithLayout'),
+        meta: { title: 'MicroApp form', icon: 'user', noCache: true }
       }
     ]
   }

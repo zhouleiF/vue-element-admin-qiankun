@@ -5,18 +5,12 @@
 <script>
 import { loadMicroApp } from 'qiankun'
 
-const microAppConfigs = [
-  {
-    name: 'sub7200',
-    entry: '//0.0.0.0:7200'
-  },
-  {
-    name: 'sub7300',
-    entry: '//0.0.0.0:7300'
-  }
-]
+const app = {
+  name: 'MicroAppWithLayout',
+  entry: '//0.0.0.0:7500'
+}
 export default {
-  name: 'MicroApp',
+  name: 'MicroAppWithLayout',
   data () {
     return {
       microApp: null
@@ -24,7 +18,6 @@ export default {
   },
   mounted () {
     console.log('主应用mounted', this.microApp)
-    const app = microAppConfigs[1]
     this.microApp = loadMicroApp({
       name: app.name,
       entry: app.entry,
